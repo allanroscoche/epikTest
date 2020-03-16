@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+const pageSize = 10;
+
 export default async (page) => {
 
     const query = `query allPeople {
-        allPeople(first: ${page*10}) {
+        allPeople(first: ${pageSize*page}) {
             totalCount
             pageInfo {
                 startCursor

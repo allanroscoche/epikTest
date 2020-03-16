@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import allPeople from "../querys/allPeople";
+import PeopleLine from "../components/people/lineItem";
+import PeopleTable from "../components/people/table";
 
 export default () => {
     const [peoples, setPeoples] = useState([]);
     const [pageIndex, setPageIndex ] = useState(1);
     const listPeople = peoples.map( 
-        (people, index) => (
-            <tr key={index}>
-                <td>{people.name}</td>
-                <td>{people.gender}</td>
-                <td>{people.filmConnection.totalCount}</td>
-            </tr>
-        )
+        (people, index) => 
+            <PeopleLine 
+                key={index} 
+                index={index} 
+                people={people} />
     )
     useEffect( () => {
         async function getData() {
@@ -23,18 +23,9 @@ export default () => {
 
     return (
         <div>
-            <table>
-                <thead>
-                    <tr>
-                        <td>Nome</td>
-                        <td>Gênero</td>
-                        <td>Filmes</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {listPeople}
-                </tbody>
-            </table>
+            <PeopleTable>
+                {listPeople}
+            </PeopleTable>
             <button onClick={ () => {
                 setPageIndex(pageIndex+1);
             }}>Mais</button>
