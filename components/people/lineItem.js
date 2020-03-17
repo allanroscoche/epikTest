@@ -23,7 +23,7 @@ export default ({ people, index }) => {
         key={people.id} 
         onMouseEnter={() => setFocus(true)}
         onMouseLeave={() => setFocus(false)}
-        onClick={() => router.push(`/people/${people.id}`)}
+        onClick={() => router.push(`/person/${people.id}`)}
         focus={focus}>
         <Column>{people.name}</Column>
         <Column>{people.gender}</Column>

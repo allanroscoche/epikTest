@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "../components/axios";
 
 const pageSize = 10;
 
@@ -24,17 +23,7 @@ export default async (page) => {
         }
     }`;
 
-    let result = await axios({
-        method: "POST",
-        url: "https://swapi-graphql.netlify.com/.netlify/functions/index",
-        headers: { 
-            "Content-Type": "application/json",
-            'Access-Control-Allow-Origin': '*',
-        },
-        data: {
-            query: query
-        } 
-    });
+    let result = await axios(query);
     let data = result.data.data.allPeople.people;
     return data;
 }
